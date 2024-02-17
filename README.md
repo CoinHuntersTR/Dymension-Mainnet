@@ -48,7 +48,7 @@ cd dymension
 git checkout v3.0.0
 ```
 
-### Binaries Kurulumu
+### Binaries Çalıştıralım.
 
 ```
 make build
@@ -63,9 +63,66 @@ mv build/dymd $HOME/.dymension/cosmovisor/genesis/bin/
 ```
 rm -rf build
 ```
+```
+sudo ln -s $HOME/.dymension/cosmovisor/genesis $HOME/.dymension/cosmovisor/current -f
+```
+```
+sudo ln -s $HOME/.dymension/cosmovisor/current/bin/dymd /usr/local/bin/dymd -f
+```
+### Cosmovisor indiriyoruz ve Service oluşturuyoruz.
 
+```
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
+```
 
-> Bu arada Dokümanın orjinali'ne [BURADAN](https://github.com/ruesandora/mangata-AVS/blob/main/README.md) ulaşabilirsiniz. Rues hazırladığı dokümanı kullandım ve yeni başlayanlar için ayrıntıları ekledim.
+```
+sudo tee /etc/systemd/system/dymension.service > /dev/null << EOF
+[Unit]
+Description=dymension node service
+After=network-online.target
 
-> Rues reposunda ödüllü olduğunu ve KYC yapılabileceğini belirtmiş. Ona göre kendi kararınızı verebilirsiniz.
+[Service]
+User=$USER
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
+Environment="DAEMON_HOME=$HOME/.dymension"
+Environment="DAEMON_NAME=dymd"
+Environment="UNSAFE_SKIP_BACKUP=true"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$HOME/.dymension/cosmovisor/current/bin"
 
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+```
+sudo systemctl daemon-reload
+```
+```
+sudo systemctl enable dymension.service
+```
+### Node Çalıştıralım.
+```
+dymd config chain-id dymension_1100-1
+```
+```
+dymd config keyring-backend file
+```
+```
+dymd config node tcp://localhost:14657
+```
+
+> "" kalıyor. VALIDATOR İSMİNE istediğiniz bir ismi verebilirsiniz.
+```
+MONIKER="VALIDATOR İSMİ"
+```
+```
+dymd init $MONIKER --chain-id dymension_1100-1
+```
+```
+curl -Ls https://snapshots.kjnodes.com/dymension/genesis.json > $HOME/.dymension/config/genesis.json
+```
+```
+curl -Ls https://snapshots.kjnodes.com/dymension/addrbook.json > $HOME/.dymension/config/addrbook.json
+```

@@ -190,9 +190,11 @@ dymd keys add wallet --recover
 
 > `moniker` "" kalıyor. içine validator ismini yazıyoruz.
 
-> `wallet` yerine cüzdan adını yazıyoruz.
+> `identity` yerine validatorünüz için logo ekleyecek ID yazıyoruz.
 
 >  `details` ile `website` yerine "" içinde website, twitter vb. linkleri eklyebilir, açıklama yazabilirsiniz.
+
+> `wallet` yerine cüzdan adını yazıyoruz.
 
 ```
 dymd tx staking create-validator \

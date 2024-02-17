@@ -1,7 +1,7 @@
 <h1 align="center"> Dymension Mainnet Validator
 
 
-  
+ <br/> 
 ![image](https://cdn.airdropalert.com/images/metadata/dymension3333333.jpeg)
 
 ## Sistem gereksinimleri:

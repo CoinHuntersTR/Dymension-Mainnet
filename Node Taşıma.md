@@ -5,10 +5,11 @@
 
 ## Taşıma Öncesi yapılacak adımlar.
 
-> `priv_validator_key.json` dosyasını taşıyacağımız node içersinden alıyoruz.
+> `priv_validator_key.json` dosyasını taşıyacağımız node içersinden yedekliyoruz. 
 
-> 
+> Dosyanın bulunduğu yer `/root/.dymension/config/priv_validator_key.json` mobaxterm yada winscp gibi uygulamalar ile rahatlıkla indirebiliriz.
 
+> Öncelikle yeni taşıyacağımız sunucu senkronize olmuş ve hazır konumda olacak.
 ### Güncelleme
 
 ```

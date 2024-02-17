@@ -10,14 +10,29 @@
 > Dosyanın bulunduğu yer `/root/.dymension/config/priv_validator_key.json` mobaxterm yada winscp gibi uygulamalar ile rahatlıkla indirebiliriz.
 
 > Öncelikle yeni taşıyacağımız sunucu senkronize olmuş ve hazır konumda olacak.
-### Güncelleme
+
+> İlk olarak işimizin bittiği sunucuyu
 
 ```
-sudo apt -q update
+sudo systemctl stop dymension.service 
 ```
+
+> ile durduruyoruz.
+
+> Sonra yeni sunucumuza, yedeklediğimiz `priv_validator_key.json` dosyasını. `/root/.dymension/config/priv_validator_key.json` buradaki yere import ediyoruz.
+
+> Sonra node restart yapıyoruz.  
+
 ```
-sudo apt -qy install curl git jq lz4 build-essential
+sudo systemctl restart dymension.service
 ```
+
+> İşlem bittikten sonra,
+
+> Aşağıdaki komutlar ile Blokların durumunu kontrol ediyoruz.
+
 ```
-sudo apt -qy upgrade
-```
+sudo journalctl -u dymension.service -f --no-hostname -o cat
+``` 
+
+> Burada sorun yok ise işlem başarılıdır! 

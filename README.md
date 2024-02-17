@@ -169,7 +169,11 @@ sudo systemctl start dymension.service && sudo journalctl -u dymension.service -
 dymd status 2>&1 | jq .SyncInfo
 ```
 
-> Nodemuz senkronize olduktan sonra `dymd status 2>&1 | jq .SyncInfo` sonucu false vermesi gerekiyor.
+>  `dymd status 2>&1 | jq .SyncInfo` sonucu false vermesi gerekiyor.
+
+> Nodemuz senkronize olduktan sonra, diğer adımlara devam ediyoruz.
+
+## Validatorümüzü Çalıştıralım
 
 ### Cüzdanımızı açalım.
 
@@ -182,7 +186,30 @@ dymd keys add wallet
 
 ```
 dymd keys add wallet --recover
-
 ```
 
+> `moniker` "" kalıyor. içine validator ismini yazıyoruz.
 
+> `wallet` yerine cüzdan adını yazıyoruz.
+
+>  `details` ile `website` yerine "" içinde website, twitter vb. linkleri eklyebilir, açıklama yazabilirsiniz.
+
+```
+dymd tx staking create-validator \
+--amount 1000000000000000000adym \
+--pubkey $(dymd tendermint show-validator) \
+--moniker "Validatorismi" \
+--identity "resim id" \
+--details "" \
+--website "" \
+--chain-id dymension_1100-1 \
+--commission-rate 0.05 \
+--commission-max-rate 0.20 \
+--commission-max-change-rate 0.01 \
+--min-self-delegation 1 \
+--from wallet \
+--gas-adjustment 1.4 \
+--gas auto \
+--gas-prices 2000000000000000000adym \
+-y
+```

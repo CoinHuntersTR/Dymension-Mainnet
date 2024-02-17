@@ -215,3 +215,19 @@ dymd tx staking create-validator \
 --gas-prices 2000000000000000000adym \
 -y
 ```
+### Validator Bilgilerinizi tekrar düzenlemek için
+
+```
+dymd tx staking edit-validator \
+--new-moniker "YOUR_MONIKER_NAME" \
+--identity "YOUR_KEYBASE_ID" \
+--details "YOUR_DETAILS" \
+--website "YOUR_WEBSITE_URL" \
+--chain-id dymension_1100-1 \
+--commission-rate 0.05 \
+--from wallet \
+--gas-adjustment 1.4 \
+--gas auto \
+--gas-prices 20000000000adym \
+-y
+```

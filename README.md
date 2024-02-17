@@ -169,3 +169,20 @@ sudo systemctl start dymension.service && sudo journalctl -u dymension.service -
 dymd status 2>&1 | jq .SyncInfo
 ```
 
+> Nodemuz senkronize olduktan sonra `dymd status 2>&1 | jq .SyncInfo` sonucu false vermesi gerekiyor.
+
+### Cüzdanımızı açalım.
+
+> `wallet` ismi yerine istediğiniz ismi girebilirsiniz.
+
+```
+dymd keys add wallet
+```
+> Eğer eski cüzdanınızı tekrar yüklemek isterseniz. Yine `wallet` ismini istediğiniz gibi değiştirebilirsiniz.
+
+```
+dymd keys add wallet --recover
+
+```
+
+

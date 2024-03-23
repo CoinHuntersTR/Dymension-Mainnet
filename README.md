@@ -12,6 +12,16 @@ NODE TİPİ | CPU     | RAM      | SSD     |
 
 ## Kurulum
 
+## Otomatik Kurulum (Script)
+
+```
+sudo apt update && sudo apt upgrade -y
+```
+
+```
+wget -q -O dymension.sh https://raw.githubusercontent.com/CoinHuntersTR/Dymension-Mainnet/main/dymension.sh && chmod +x dymension.sh && ./dymension.sh
+```
+
 ### Güncelleme
 
 ```

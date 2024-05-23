@@ -19,7 +19,7 @@ cd $HOME
 rm -rf dymension
 git clone https://github.com/dymensionxyz/dymension.git
 cd dymension
-git checkout v3.0.0
+git checkout v3.1.0
 make build
 mkdir -p $HOME/.dymension/cosmovisor/genesis/bin
 mv build/dymd $HOME/.dymension/cosmovisor/genesis/bin/
